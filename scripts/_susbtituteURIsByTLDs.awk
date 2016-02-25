@@ -1,11 +1,11 @@
 #!/usr/bin/awk -f
 
 BEGIN {
-        if (ARGC != 3)
-        {
-                printf "Usage %s ccSLD_file quads_file \n",ARGV[0] > "/dev/stderr";
-                exit 1
-		}
+    if (ARGC != 3)
+    {
+            printf "Usage %s ccSLD_file quads_file \n",ARGV[0] > "/dev/stderr";
+            exit 1
+	}
 	regex = ""
 }
 
@@ -16,7 +16,10 @@ BEGIN {
 	}
 }
 
-ENDFILE {regex = "([^\\/\\.]+\\.(" substr(regex,1,length(regex)-1) "))\\/"}
+ENDFILE {
+	regex = "(https?:\\/\\/[^\\/\\.]+\\.(" substr(regex,1,length(regex)-1) "))\\/";
+	%print regex	
+		}
 
 (NR != FNR) {
 	line = "";
