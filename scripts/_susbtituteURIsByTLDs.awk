@@ -17,8 +17,7 @@ BEGIN {
 }
 
 ENDFILE {
-	regex = "(https?:\\/\\/[^\\/\\.]+\\.(" substr(regex,1,length(regex)-1) "))\\/";
-	#print regex	
+	regex = ":\\/\\/([^\\/\\.]+\\.(" substr(regex,1,length(regex)-1) "))\\/";
 		}
 
 (NR != FNR) {
