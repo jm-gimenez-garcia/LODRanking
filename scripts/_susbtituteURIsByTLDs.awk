@@ -11,13 +11,12 @@ BEGIN {
 
 (NR == FNR) {
 	if ($1 != "//" && $1 != "") {
-		#gsub(/\./, "\\\.");
 		regex = regex $1 "|"
 	}
 }
 
 ENDFILE {
-	regex = ":\\/\\/([^\\/\\.]+\\.(" substr(regex,1,length(regex)-1) "))\\/";
+	regex = "([^\\/\\.]+\\.(" substr(regex,1,length(regex)-1) "))\\/";
 		}
 
 (NR != FNR) {
